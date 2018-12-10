@@ -6,13 +6,17 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/login',
-      name: 'login',
-      component: () => import('./views/login.vue'),
+      path: '/dashboard',
+      name: 'dashboard',
+      component: () => import('./views/dashboard.vue'),
+    },
+    {
+      name: 'page-hcs-uploads',
+      component: () => import('./views/hcs-watcher/uploads.vue'),
     },
     {
       path: '*',
-      redirect: '/login',
+      redirect: '/dashboard',
     },
   ],
 });

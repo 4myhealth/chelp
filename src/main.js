@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import './plugins/axios'
+import './plugins/axios';
 import VeeValidate, { Validator } from 'vee-validate';
 import de from 'vee-validate/dist/locale/de';
 import App from './app.vue';
