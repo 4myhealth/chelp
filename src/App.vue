@@ -1,38 +1,27 @@
-<template>
-  <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
-
-    <v-content>
-      <HelloWorld/>
-    </v-content>
-  </v-app>
+<template lang="pug">
+  v-app
+    v-navigation-drawer(app, :value="isActive", stateless)
+      v-toolbar(flat)
+        v-list
+          v-list-tile
+            v-list-tile-title.title cHelp
+      v-divider
+    v-content
+      v-container(fluid)
+        router-view
+    v-footer(app)
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  computed: {
+    ...mapGetters({
+      isActive: 'isMenuActive',
+    }),
   },
-  data () {
-    return {
-      //
-    }
-  }
-}
+};
 </script>
