@@ -1,11 +1,9 @@
 import Vue from 'vue';
-import Store from 'electron-store';
-
-const store = new Store();
-
+import store from '../lib/store';
 
 Vue.use({
   install(VueInstance) {
+    VueInstance.electronStore = store;
     VueInstance.prototype.$electronStore = store;
   },
 });
