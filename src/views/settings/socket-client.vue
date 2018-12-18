@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import log from 'electron-log'; // eslint-disable-line
 import DB from '../../lib/database';
 import SocketClient from '../../lib/service-socket-client';
@@ -40,6 +41,7 @@ export default {
     this.setSocketStatus();
   },
   methods: {
+    ...mapActions(['activateSocketClient', 'deactivateSocketClient']),
     /**
      * [save description]
      * @return {[type]} [description]
@@ -52,18 +54,14 @@ export default {
      * @return {[type]} [description]
      */
     disconnect() {
-      SocketClient.disconnect().then(() => {
-        this.setSocketStatus();
-      });
+      this.deactivateSocketClient().then(this.setSocketStatus);
     },
     /**
      * [connect description]
      * @return {[type]} [description]
      */
     connect() {
-      SocketClient.connect().then(() => {
-        this.setSocketStatus();
-      });
+      this.activateSocketClient().then(this.setSocketStatus);
     },
     socketStatus() {
       return SocketClient.connected;

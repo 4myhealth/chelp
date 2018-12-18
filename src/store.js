@@ -60,11 +60,14 @@ export default new Vuex.Store({
      * @return {[type]}       [description]
      */
     activateSocketClient() {
-      SocketClient.connect().then(() => {
+      return SocketClient.connect().then(() => {
         SynmedicoSocketHandler.init(SocketClient);
         FotoFinderSocketHandler.init(SocketClient);
         MedRequestSocketHandler.init(SocketClient);
       });
+    },
+    deactivateSocketClient() {
+      return SocketClient.disconnect();
     },
   },
 });
