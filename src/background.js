@@ -25,6 +25,7 @@ let win;
 protocol.registerStandardSchemes(['app'], { secure: true });
 
 autoUpdater.on('update-downloaded', (info) => {
+  forceQuit = true;
   autoUpdater.quitAndInstall();
 });
 
