@@ -1,4 +1,5 @@
 <template lang="pug">
+  p da sollte was sein!
 </template>
 
 <script>
