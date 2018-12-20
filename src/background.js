@@ -6,6 +6,8 @@ import {
   installVueDevtools,
 } from 'vue-cli-plugin-electron-builder/lib';
 import log from 'electron-log';
+import { autoUpdater } from 'electron-updater';
+
 
 log.info('---------------- STARTING PROGRAMM ----------------');
 
@@ -21,6 +23,10 @@ let win;
 
 // Standard scheme must be registered before the app is ready
 protocol.registerStandardSchemes(['app'], { secure: true });
+
+autoUpdater.on('update-downloaded', (info) => {
+  autoUpdater.quitAndInstall();
+});
 
 function createWindow() {
   // Create the browser window.
@@ -115,6 +121,7 @@ app.on('ready', async () => {
     // Install Vue Devtools
     await installVueDevtools();
   }
+  autoUpdater.checkForUpdatesAndNotify();
   createWindow();
 });
 
