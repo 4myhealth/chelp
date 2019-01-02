@@ -1,15 +1,16 @@
 <template lang="pug">
-  p da sollte was sein! und update????
+  p bitte danke, gehtscho!
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+
 export default {
-  methods:{
-    ...mapActions(['setMenuActive']),
-  },
   mounted() {
     this.setMenuActive(true);
+  },
+  methods: {
+    ...mapActions(['setMenuActive']),
   },
 };
 </script>
