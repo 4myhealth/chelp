@@ -8,10 +8,10 @@ module.exports = {
     electronBuilder: {
       builderOptions: {
         win: {
-          icon: './icon.ico',
+          icon: './logo.ico',
         },
         mac: {
-          icon: './icon.png',
+          icon: './logo.png',
         },
         // options placed here will be merged with default configuration and passed to electron-builder
         publish: [{
