@@ -33,6 +33,18 @@ autoUpdater.on('update-downloaded', (info) => {
 });
 
 function createWindow() {
+  const shouldQuit = app.makeSingleInstance(() => {
+    // Someone tried to run a second instance, we should focus our window.
+    if (win) {
+      if (win.isMinimized()) win.restore();
+      win.focus();
+    }
+  });
+
+  if (shouldQuit) {
+    app.quit();
+    return;
+  }
   // Create the browser window.
   win = new BrowserWindow({ width: 800, height: 600 });
   if (isDevelopment || process.env.IS_TEST) {

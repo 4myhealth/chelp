@@ -1,5 +1,4 @@
 <template lang="pug">
-  p bitte danke, gehtscho!
 </template>
 
 <script>
