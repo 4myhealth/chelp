@@ -7,6 +7,7 @@
           td {{props.item.date}}
           td
             span.circle(:class="{green:isStatusActive(props.item, Upload.STATUS_UPLOAD_SUCCESS), red:!isStatusActive(props.item, Upload.STATUS_UPLOAD_SUCCESS)}")
+            v-btn(@click="upload(props.item)", flat, small) Upload
       template(slot="expand", slot-scope="props")
         v-list
           v-list-tile(v-for="(errorData, index) in props.item.errors", :key="index")
@@ -42,6 +43,9 @@ export default {
   methods: {
     isStatusActive(result, status) {
       return result.status === status;
+    },
+    upload(file) {
+      file.forceUpload();
     },
   },
 };
