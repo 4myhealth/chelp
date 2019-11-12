@@ -5,6 +5,7 @@ export default {
   get SETTINGS_RESULTS_WATCHER() { return 'settings-results-watcher'; },
   get SETTINGS_FOTOFINDER() { return 'settings-fotofinder'; },
   get SETTINGS_SYNMEDICO() { return 'settings-synmedico'; },
+  get SETTINGS_LB_SYSTEMS() { return 'settings-lb-systems'; },
   get SETTINGS_MED_REQUEST() { return 'settings-medrequest'; },
   get SETTINGS_SOCKET_CLIENT() { return 'settings-socket-client'; },
   get RESULTS_WATCHER_PDFS() { return 'results-watcher-pdfs'; },
@@ -15,6 +16,7 @@ export default {
       this.SETTINGS_RESULTS_WATCHER,
       this.SETTINGS_FOTOFINDER,
       this.SETTINGS_SYNMEDICO,
+      this.SETTINGS_LB_SYSTEMS,
       this.SETTINGS_MED_REQUEST,
       this.SETTINGS_SOCKET_CLIENT,
       this.RESULTS_WATCHER_PDFS,
@@ -60,6 +62,15 @@ export default {
     // SYNMEDICO
     if (!electronStore.get(this.SETTINGS_SYNMEDICO)) {
       electronStore.set(this.SETTINGS_SYNMEDICO, {
+        folderPath: '',
+        filename: '',
+        programmPath: '',
+      });
+    }
+
+    // LB SYSTEMS
+    if (!electronStore.get(this.SETTINGS_LB_SYSTEMS)) {
+      electronStore.set(this.SETTINGS_LB_SYSTEMS, {
         folderPath: '',
         filename: '',
         programmPath: '',

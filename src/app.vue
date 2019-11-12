@@ -48,6 +48,13 @@
           v-list-tile(@click="goto('page-synmedico-settings')")
             v-list-tile-content
               v-list-tile-title Einstellungen
+        v-list-group(no-action)
+          v-list-tile(slot="activator")
+            v-list-tile-content
+              v-list-tile-title LB Systems
+          v-list-tile(@click="goto('page-lb-systems-settings')")
+            v-list-tile-content
+              v-list-tile-title Einstellungen
     v-content
       v-container(fluid)
         router-view

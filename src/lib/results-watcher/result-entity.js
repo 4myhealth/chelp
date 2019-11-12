@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import electronStore from '../store';
 import Upload from './upload';
 import ResultFileHeader from './result-file-header';
@@ -53,7 +54,7 @@ class ResultEntity {
         throw new Error('Keinen Server eingetragen. File kann nicht auf den Server geladen werden.');
       }
 
-      return upload.upload({
+      return this.upload({
         doctor,
         resultFileHeader,
       });

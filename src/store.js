@@ -7,6 +7,7 @@ import SocketClient from './lib/service-socket-client';
 import SynmedicoSocketHandler from './lib/synmedico/socket-handler';
 import FotoFinderSocketHandler from './lib/foto-finder/socket-handler';
 import MedRequestSocketHandler from './lib/med-request/socket-handler';
+import LbSystemsSocketHandler from './lib/lb-systems/socket-handler';
 
 Vue.use(Vuex);
 
@@ -64,6 +65,7 @@ export default new Vuex.Store({
         SynmedicoSocketHandler.init(SocketClient);
         FotoFinderSocketHandler.init(SocketClient);
         MedRequestSocketHandler.init(SocketClient);
+        LbSystemsSocketHandler.init(SocketClient);
       });
     },
     deactivateSocketClient() {
