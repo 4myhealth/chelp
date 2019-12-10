@@ -58,8 +58,11 @@ class Upload {
     const formData = new FormData();
     const { patient } = resultFileHeader;
 
-    formData.append('data[file][data]', fs.readFileSync(this.fullPath).toString('base64'));
-    formData.append('data[file][name]', this.filename);
+    const fileData = new Blob([new Uint8Array(fs.readFileSync(this.fullPath))]);
+    formData.append('data[file][data]', fileData, this.filename);
+
+    // const fileData = fs.readFileSync(this.fullPath).toString('base64');
+    // formData.append('data[file][data]', fileData);
     formData.append('data[doctor_me_number]', doctor.meNumber);
     formData.append('data[laboratory_me_number]', resultFileHeader.laboratoryMENumber);
     formData.append('data[result_date]', resultFileHeader.resultDate);
@@ -77,7 +80,7 @@ class Upload {
         'Content-Type': 'application/x-www-form-urlencoded',
         'X-Requested-With': 'XMLHttpRequest',
       },
-    }).then((response) => {
+    }).then(({ data: response }) => {
       if (response.success) {
         this.status = Upload.STATUS_UPLOAD_SUCCESS;
       } else {

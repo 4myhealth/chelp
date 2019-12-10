@@ -36,6 +36,11 @@ export default new Router({
       component: () => import('./views/synmedico/settings/synmedico.vue'),
     },
     {
+      path: '/lb-systems/settings',
+      name: 'page-lb-systems-settings',
+      component: () => import('./views/lb-systems/settings/lb-systems.vue'),
+    },
+    {
       path: '/med-request/settings',
       name: 'page-med-request-settings',
       component: () => import('./views/med-request/settings/med-request.vue'),

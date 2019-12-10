@@ -56,6 +56,7 @@ class ServiceSocketClient {
           EventBus.$emit(Event.INIT_MED_REQUEST_SOCKET_HANDLER);
           EventBus.$emit(Event.INIT_FOTO_FINDER_SOCKET_HANDLER);
           EventBus.$emit(Event.INIT_SYNMEDICO_SOCKET_HANDLER);
+          EventBus.$emit(Event.INIT_LB_SYSTEMS_SOCKET_HANDLER);
         });
       } catch (err) {
         reject(err);

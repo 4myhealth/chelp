@@ -4,8 +4,8 @@
       v-card-title Arzt
       v-card-text
         v-form
-          v-text-field(label="Vorname", name="firstName", type="text", v-model="doctor.firstName")
-          v-text-field(label="Nachname", name="lastName", type="text", v-model="doctor.lastName")
+          v-text-field(label="Vorname", name="firstName", type="text", v-model="doctor.firstname")
+          v-text-field(label="Nachname", name="lastName", type="text", v-model="doctor.lastname")
           v-text-field(label="ME-Nummer", name="meNumber", type="text", v-model="doctor.meNumber")
           v-text-field(label="Upload-URL", name="uploadURL", type="url", v-model="doctor.uploadURL")
       v-card-actions
@@ -14,26 +14,26 @@
 </template>
 
 <script>
-  import log from 'electron-log'; // eslint-disable-line
+import log from 'electron-log'; // eslint-disable-line
 
-  export default {
-    props: {
-      show: {
-        type: Boolean,
-        default: false,
-      },
-      doctor: {
-        type: Object,
-        default: {},
-      },
+export default {
+  props: {
+    show: {
+      type: Boolean,
+      default: false,
     },
-    methods: {
-      abort() {
-        this.$emit('update:show', false);
-      },
-      save() {
-        this.$emit('savedoctor');
-      },
+    doctor: {
+      type: Object,
+      default: () => {},
     },
-  };
+  },
+  methods: {
+    abort() {
+      this.$emit('update:show', false);
+    },
+    save() {
+      this.$emit('savedoctor');
+    },
+  },
+};
 </script>

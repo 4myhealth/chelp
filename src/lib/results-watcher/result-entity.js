@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import electronStore from '../store';
 import Upload from './upload';
 import ResultFileHeader from './result-file-header';
@@ -36,6 +37,35 @@ class ResultEntity {
 
     if (this.uploads.length === 0) {
       this.uploads.push(new Upload({ filename: this.filename, path: this.path }));
+    }
+  }
+
+  async forceUpload() {
+    try {
+      const resultFileHeader = new ResultFileHeader(this.fullPath);
+      const doctors = electronStore.get(DB.RESULTS_DOCTORS);
+      const doctor = _.find(doctors, docInArray => docInArray.meNumber === resultFileHeader.MENumber);
+
+      if (!doctor) {
+        throw new Error(`Kein passender Arzt mit der ME-Nummer: ${resultFileHeader.MENumber} gefunden.`);
+      }
+
+      if (!doctor.uploadURL) {
+        throw new Error('Keinen Server eingetragen. File kann nicht auf den Server geladen werden.');
+      }
+
+      return this.upload({
+        doctor,
+        resultFileHeader,
+      });
+    } catch (err) {
+      if (this.iErrors.length >= maxErrorItems) {
+        this.iErrors.splice(0, this.iErrors.length - maxErrorItems + 1);
+      }
+      this.iErrors.push({
+        date: new Date().toString(),
+        message: err.toString(),
+      });
     }
   }
 

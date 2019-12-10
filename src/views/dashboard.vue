@@ -3,12 +3,13 @@
 
 <script>
 import { mapActions } from 'vuex';
+
 export default {
-  methods:{
-    ...mapActions(['setMenuActive']),
-  },
   mounted() {
     this.setMenuActive(true);
+  },
+  methods: {
+    ...mapActions(['setMenuActive']),
   },
 };
 </script>

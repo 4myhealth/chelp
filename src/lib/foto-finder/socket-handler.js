@@ -15,6 +15,7 @@ class SocketHandler {
    * @return {[type]}                     [description]
    */
   static init(ServiceSocketClient) {
+    log.info('listen for Socket::START_FOTO_FINDER');
     ServiceSocketClient.socket.on('Socket::START_FOTO_FINDER', SocketHandler.generateFile);
   }
 
@@ -24,14 +25,19 @@ class SocketHandler {
    * @return {[type]}      [description]
    */
   static generateFile(data) {
-    GDT.generate(data.user).then((fileString) => {
-      const settings = store.get(DB.SETTINGS_FOTOFINDER);
-      const filePath = path.join(settings.folderPath, `${settings.gdtFileIdReceiver}${settings.gdtFileIdSender}`);
-      log.info('path to save', filePath);
-      fs.writeFile(filePath, fileString, () => {
-        log.info('FotoFinder file written');
+    log.info('try Socket::START_FOTO_FINDER');
+    try {
+      GDT.generate(data.user).then((fileString) => {
+        const settings = store.get(DB.SETTINGS_FOTOFINDER);
+        const filePath = path.join(settings.folderPath, `${settings.gdtFileIdReceiver}${settings.gdtFileIdSender}`);
+        log.info('path to save', filePath);
+        fs.writeFile(filePath, fileString, () => {
+          log.info('FotoFinder file written');
+        });
       });
-    });
+    } catch (err) {
+      log.error(err);
+    }
   }
 }
 
