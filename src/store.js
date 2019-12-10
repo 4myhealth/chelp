@@ -1,3 +1,4 @@
+import log from 'electron-log'; // eslint-disable-line
 import Vue from 'vue';
 import Vuex from 'vuex';
 import DB from './lib/database';
@@ -61,7 +62,9 @@ export default new Vuex.Store({
      * @return {[type]}       [description]
      */
     activateSocketClient() {
+      log.info('TRY TO CONNECT TO SOCKET SERVER');
       return SocketClient.connect().then(() => {
+        log.info('CONNECTED TO SOCKET SERVER');
         SynmedicoSocketHandler.init(SocketClient);
         FotoFinderSocketHandler.init(SocketClient);
         MedRequestSocketHandler.init(SocketClient);

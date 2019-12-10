@@ -16,6 +16,7 @@ class SocketHandler {
    * @return {[type]}                     [description]
    */
   static init(ServiceSocketClient) {
+    log.info('listen for Socket::START_LB_SYSTEMS');
     ServiceSocketClient.socket.on('Socket::START_LB_SYSTEMS', SocketHandler.generateFile);
   }
 

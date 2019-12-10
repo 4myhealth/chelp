@@ -16,6 +16,7 @@ class SocketHandler {
    * @return {[type]}                     [description]
    */
   static init(ServiceSocketClient) {
+    log.info('listen for Socket::START_SYNMEDICO');
     ServiceSocketClient.socket.on('Socket::START_SYNMEDICO', SocketHandler.generateFile);
   }
 
